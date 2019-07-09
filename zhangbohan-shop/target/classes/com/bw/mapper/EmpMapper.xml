@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper   
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"   
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- 
+	namespace:工作空间的名称   名称随意
+ -->
+ <!-- 如果做接口映射，namespace需要添加映射接口的全限定名称  -->
+<mapper namespace="com.bw.mapper.BrandDao">
+
+   <select id="findAll" resultType="brand">
+     SELECT * FROM  dp 
+   <where>
+   <if test=" dname != null and dname != ''">
+     dname   = #{dname}
+   </if>
+   </where>
+   </select>
+    <select id="select" resultType="brand">
+       select * from brand 
+    </select>
+    
+    <insert id="add" parameterType="brand">
+       insert into dp (dname,dtime,dbrand) values(#{dname},#{dtime},#{dbrand})
+    </insert>
+    <delete id="del" parameterType="string">
+      delete from dp where did  in(#{0})
+    </delete>
+    
+    <select id="finddid" parameterType="string" resultType="brand">
+    SELECT * FROM  dp  where did = #{0}
+    </select>
+</mapper>
